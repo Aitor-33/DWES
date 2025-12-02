@@ -1,0 +1,20 @@
+
+CREATE DATABASE IF NOT EXISTS tienda_online
+ CHARACTER SET utf8mb4
+ COLLATE utf8mb4_unicode_ci;
+USE tienda_online;
+CREATE TABLE IF NOT EXISTS pedidos (
+ id BIGINT AUTO_INCREMENT PRIMARY KEY,
+ nombre_cliente VARCHAR(100) NOT NULL,
+ fecha_pedido DATETIME NOT NULL,
+ importe_total DECIMAL(10,2) NOT NULL,
+ estado VARCHAR(20) NOT NULL
+ -- Por ejemplo: 'PENDIENTE', 'ENVIADO', 'CANCELADO'
+);
+-- Insert 1: Pedido pendiente
+INSERT INTO pedidos (nombre_cliente, fecha_pedido, importe_total, estado) 
+VALUES ('María García López', '2025-11-17 10:30:00', 125.50, 'PENDIENTE');
+
+-- Insert 2: Pedido enviado
+INSERT INTO pedidos (nombre_cliente, fecha_pedido, importe_total, estado) 
+VALUES ('Carlos Rodríguez Pérez', '2025-11-16 14:45:00', 89.99, 'ENVIADO');
