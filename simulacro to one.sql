@@ -1,8 +1,8 @@
-CREATE DATABASE IF NOT EXISTS manytoone
+CREATE DATABASE IF NOT EXISTS simulacrotoone
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
  
-USE manytoone;
+USE simulacrotoone;
  
 
 CREATE TABLE IF NOT EXISTS empresas (
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS empresas (
 
 CREATE TABLE IF NOT EXISTS empleados (
   id varchar(200) NOT NULL,
-  empresa_id VARCHAR(200) NOT NULL,   -- @JoinColumn(name = "empresa_id", nullable = false)
+  empresa_id VARCHAR(200) NOT NULL,   
   nombre VARCHAR(255) NOT NULL,
   apellido VARCHAR(255) NOT NULL,
   edad INT,
@@ -28,18 +28,5 @@ CREATE TABLE IF NOT EXISTS empleados (
 ) ENGINE=InnoDB;
  
 -- Datos de prueba para EMPRESAS
-INSERT INTO empresas (nombre) VALUES ('Empresa A');
-INSERT INTO empresas (nombre) VALUES ('Empresa B');
-
-
-	ALTER TABLE empleados 
-    MODIFY column empresa_id VARCHAR(200) NOT NULL;
-    
-	ALTER TABLE empresas 
-    MODIFY COLUMN id VARCHAR(200) NOT NULL;
-    
-    ALTER TABLE empleados 
-    MODIFY COLUMN id VARCHAR(200) NOT NULL;
-    
-
-
+INSERT INTO empresas (id, nombre) VALUES ('dfadsadsa212ads','Empresa A');
+INSERT INTO empresas (id, nombre) VALUES ('sdfsdfsdfds212sa','Empresa B');
