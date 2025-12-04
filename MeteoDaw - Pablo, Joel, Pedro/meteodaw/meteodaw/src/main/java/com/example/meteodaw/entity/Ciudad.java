@@ -1,5 +1,7 @@
 package com.example.meteodaw.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +15,11 @@ public class Ciudad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    //     @Id
+    // @GeneratedValue(generator = "uuid") // Le dice a Hibernate que lo genere.
+    // @GenericGenerator(name = "uuid", strategy = "uuid2") // Le dice a Hibernate que use UUID.
+    //private String id;
 
     private String nombre;
     private String pais;
