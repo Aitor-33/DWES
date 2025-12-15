@@ -1,9 +1,14 @@
 package com.example.empleados.controller;
 
+import com.example.empleados.dto.EmployeeDTO;
 import com.example.empleados.model.Employee;
 import com.example.empleados.service.EmployeeService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.empleados.model.Employee;
@@ -22,23 +27,28 @@ this.service = service;
 }
 @GetMapping("/list")
 public String list(Model model) {
-model.addAttribute("empleados", service.findAll());
+model.addAttribute("empleados", service.findAllDTOs());
 return "empleados-list";
 }
 @GetMapping("/nuevo")
 public String nuevo(Model model) {
-model.addAttribute("empleado", new Employee());
+model.addAttribute("empleado", new EmployeeDTO());
 return "empleados-form";
 }
+
 @PostMapping("/save")
-public String save(@ModelAttribute("empleado") Employee employee) {
-service.save(employee);
+public String save(@Valid @ModelAttribute("empleado") EmployeeDTO dto,
+BindingResult bindingResult) {
+if (bindingResult.hasErrors()) {
+return "empleados-form";
+}
+service.saveFromDTO(dto);
 return "redirect:/empleados/list";
 }
 @GetMapping("/editar/{id}")
 public String editar(@PathVariable Long id, Model model) {
-Employee emp = service.findById(id);
-model.addAttribute("empleado", emp);
+EmployeeDTO dto = service.findDTOById(id);
+model.addAttribute("empleado", dto);
 return "empleados-form";
 }
 @GetMapping("/delete/{id}")
